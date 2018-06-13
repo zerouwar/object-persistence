@@ -17,7 +17,6 @@ import scala.concurrent.duration._
   *         Created at 2018/6/10
   */
 object Server extends HttpApp with JsonSupport {
-  val port = 8080
 
   /**
     * actor和system
@@ -80,7 +79,10 @@ object Server extends HttpApp with JsonSupport {
 
 
   def main(args: Array[String]): Unit = {
-    Server.startServer("localhost", Server.port, mySystem)
+
+    val port = mySystem.settings.config.getInt("application.port")
+
+    Server.startServer("0.0.0.0", port, mySystem)
     mySystem.terminate()
   }
 }
