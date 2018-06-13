@@ -1,15 +1,19 @@
 package cn.chenhuanming.file.service
 
+import akka.Done
 import akka.actor.{ActorSystem, Props}
+import akka.http.scaladsl.Http
 import akka.pattern.ask
-import akka.http.scaladsl.model.{StatusCodes}
+import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.{HttpApp, Route}
 import akka.util.Timeout
 import cn.chenhuanming.file.service.actor.FileActor
 import cn.chenhuanming.file.service.actor.FileActor.RequireUploadToken
 import cn.chenhuanming.file.service.domain.{ClientConfig, Domain, JsonSupport, UploadToken}
 
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
+import scala.util.Try
 
 /**
   *
@@ -78,12 +82,19 @@ object Server extends HttpApp with JsonSupport {
   }
 
 
+  override protected def waitForShutdownSignal(system: ActorSystem)(implicit ec: ExecutionContext): Future[Done] = Future.never
+
+
+  override protected def postServerShutdown(attempt: Try[Done], system: ActorSystem): Unit = {
+    mySystem.terminate()
+    super.postServerShutdown(attempt, system)
+  }
+
   def main(args: Array[String]): Unit = {
 
     val port = mySystem.settings.config.getInt("application.port")
 
     Server.startServer("0.0.0.0", port, mySystem)
-    mySystem.terminate()
   }
 }
 
