@@ -1,0 +1,4 @@
+var statistics = {
+    str:"",
+    exclude:"",
+}

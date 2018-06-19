@@ -2,7 +2,6 @@ package cn.chenhuanming.file.service
 
 import akka.Done
 import akka.actor.{ActorSystem, Props}
-import akka.http.scaladsl.Http
 import akka.pattern.ask
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.{HttpApp, Route}
@@ -10,6 +9,7 @@ import akka.util.Timeout
 import cn.chenhuanming.file.service.actor.FileActor
 import cn.chenhuanming.file.service.actor.FileActor.RequireUploadToken
 import cn.chenhuanming.file.service.domain.{ClientConfig, Domain, JsonSupport, UploadToken}
+import cn.chenhuanming.hooks.server.HooksServer
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
@@ -21,6 +21,8 @@ import scala.util.Try
   *         Created at 2018/6/10
   */
 object Server extends HttpApp with JsonSupport {
+
+  HooksServer.startServer()
 
   /**
     * actor和system
