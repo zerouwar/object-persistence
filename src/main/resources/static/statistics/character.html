@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计字符</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <script src="../js/util.js"></script>
+
+    <script src="./js/state.js"></script>
+    <script src="./js/character.js"></script>
+
+    <style>
+        .verticalMiddle{
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .fullHeight{
+            height: 100%;
+        }
+        .fullWidth{
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-center">
+<div style="height: 35rem">
+    <div class="container fullHeight">
+        <div class="row fullHeight">
+            <div class="col-6">
+                <textarea class="fullHeight fullWidth" id="textarea" placeholder="输入你的字符串"></textarea>
+            </div>
+            <div class="col-2 fullHeight">
+                <button class="btn btn-outline-primary w-75 verticalMiddle" onclick="calculateCharacter()">统计</button>
+            </div>
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">正则排除</span>
+                    </div>
+                    <input id="exclude">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">字符个数</span>
+                    </div>
+                    <input id="charNumber">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
