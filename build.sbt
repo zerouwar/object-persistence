@@ -5,7 +5,7 @@ version := "0.1"
 
 scalaVersion := "2.12.6"
 
-resolvers += "chenhuanming-repo" at "https://raw.githubusercontent.com/zerouwar/my-maven-repo/master"
+resolvers += "chenhuanming Maven Repository" at "https://raw.githubusercontent.com/zerouwar/my-maven-repo/master"
 
 val akkaHttpV = "10.1.1"
 
