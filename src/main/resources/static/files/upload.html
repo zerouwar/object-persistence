@@ -32,9 +32,10 @@
                 This is a success alert—check it out!
             </div>
             <div class="form-group">
-                <label class="btn btn-primary col-6">
-                    选择文件<input type="file" hidden>
-                </label>
+                <button class="btn btn-primary col-6" id="fileButton" onclick="document.getElementById('file').click()">
+                    请选择文件
+                </button>
+                <input type="file" name="file" id="file" onchange="fileChange(event)" hidden>
             </div>
             <div class="form-group">
                 <input type="text" id="key" name="key" placeholder="设置文件名" class="col-6"/>
@@ -44,7 +45,7 @@
                 <button type="submit" class="btn btn-outline-info col-6" onclick="uploadFile()">提交</button>
             </div>
             <div class="form-group" style="display: none" id="lastUploadFile">
-                <p>上一个上传成功的文件链接:<a href="#"></a></p>
+                <p>上一个上传成功的文件<strong id="lastUploadFilename"></strong>链接:<a href="#"></a></p>
             </div>
         </form>
     </div>
