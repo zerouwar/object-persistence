@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 git pull
-PID = `cat pid`
+PID=`cat pid`
 (sleep 1; kill ${PID}) &
 wait ${PID}
 sbt stage
